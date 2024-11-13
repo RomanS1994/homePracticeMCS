@@ -1,13 +1,13 @@
 import numpy as np 
-a = np.array([[4, 6], [3, 2]])
-b = np.array([[8, 2], [3, 1]])
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6], [7, 8]])
 
-task1 = a.dot(b)
+task1 = b.dot(a)
 # print(task1)
 
 
-c = np.array([[2, 3], [6, 1]])
-d = np.array([[2, 5], [1, 3]])
+c = np.array([[2, 2], [3, 4]])
+d = np.array([[5, 6], [7, 8]])
 task2 = c.dot(d)
 # print(task2)
 
@@ -18,8 +18,8 @@ task3 = f.dot(e)
 
 
 
-r = np.array([ [1, 2], [3, 4], [5,6]])
-t = np.array([ [7, 8, 9], [10, 11, 12] ])
+r = np.array([ [2, -9, -5], [-10, -1, -3], [-9, -6, 9]])
+t = np.array([ [-10, -7, 1, 3], [-10, -7, 10, -9], [9, 4, -9, 7] ])
 task4 = r.dot(t)
 print(task4)
 
