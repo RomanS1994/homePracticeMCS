@@ -1,15 +1,13 @@
 import numpy as np
-A = np.array(
-    [[1, 2],
-     [3, 4]]
-    )
-print(round(np.linalg.det(A)))               
+a = np.array([[3, 0, 0], [1, 2, 0], [0, 1, -1]])
+b = np.array([30, 18, 2])
+x = np.linalg.solve(a, b)
 
 
-B = np.array(
-    [[4, -5, 7],
-     [1, -4, 9],
-     [-4, 0, 5],
-     ]
-    )
-print(round(np.linalg.det(B)))
+print ("Матриця A:\n", a)
+print ("Вектор b:\n", b)
+print ("Розв'язання системи:\n", x)
+
+
+res = 0.5*x[2]+x[0]*0.5*x[1]
+print(res)
