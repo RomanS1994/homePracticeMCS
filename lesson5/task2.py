@@ -28,7 +28,4 @@ ax.plot(x1, y, label=r"$f(x) = -3x^2 + 30x$", color='orange')  # Функція
 ax.plot(x1, dy, label=r"$f'(x)$", color='blue')  # Похідна
 ax.scatter(5, 75, color='red', label="Точки максимуму", zorder=100)  # Точкa максимуму
 
-
-
-
 plt.show()
