@@ -1,11 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy import stats
 
-# Параметри гамма-розподілу
-shape = 0.3  # Параметр форми (k)
-scale = 1.1  # Параметр шкали (θ)
-
-# Симуляція зміни ціни акцій для заданого часу t
 def stock_price_at_time(t: int) -> float:
     steps = np.random.gamma(0.3, 1.1, size=t)  # Генеруємо t значень
     return steps.sum()
@@ -18,19 +14,23 @@ def simulate_n_times(n: int, t: int) -> list:
 
 # Симуляція для різних значень часу t
 t_values = range(1, 61, 2)  # Від 1 до 60 з кроком 2
-n = 100  # Кількість симуляцій для кожного t
+n = 100  # Кількість симуляцій
 
-# Аналіз і побудова гістограм
 for t in t_values:
     results = simulate_n_times(n, t)
     
-    # Будуємо гістограму
+    # Побудова гістограми
     plt.hist(results, bins=20, alpha=0.6, edgecolor='black')
     plt.title(f'Гістограма для n={n} симуляцій, t={t}')
     plt.xlabel('Ціна')
     plt.ylabel('Частота')
     plt.show()
-    
-    # Середнє значення
-    mean_price = np.mean(results)
-    print(f'Середнє значення для t={t}: {mean_price}')
+
+    # Тест на нормальність
+    k2, pvalue = stats.normaltest(results)
+
+    # Виведення статистичних результатів
+    print(f"t={t}:")
+    print(f"  Статистика тесту (k2): {k2:.4f}")
+    print(f"  p-value: {pvalue:.4f}")
+    print("-" * 50)

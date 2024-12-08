@@ -27,9 +27,8 @@ for n in [10, 100, 1000, 10000]:
     plt.ylabel('Частота')
     plt.show()
 
-# # Додатково: розрахунок середнього значення
-#     mean_price = np.mean(results)
-#     print(f'Середнє значення для {n} симуляцій: {mean_price}')
+
+    print(f'Середнє значення для {n} симуляцій: {mean_price}')
 
 
 
