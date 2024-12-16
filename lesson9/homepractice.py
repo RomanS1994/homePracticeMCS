@@ -1,38 +1,34 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import time
+from scipy.optimize import linprog
+
+start = time.time()
+
+# Цільова функція — на мінімум
+c = [-2, -9, -6]
+
+# Коефіцієнти при нерівностях
+A_ub = [
+    [12, 6, 2],
+    [12, 24, 18],
+    [12, 18, 12],
+]
+b_ub = [360, 192, 180]  # Результати при нерівностях
+
+# Оптимізація
+result = linprog(c, A_ub, b_ub)
 
 
-# Визначення точок для опуклої множини
-convex_points = np.array([[1, 1], [2, 4], [5, 5], [7, 5], [8, 2]])
 
 
-# Визначення точок для неопуклої множини
-non_convex_points = np.array([[1, 1], [2, 4], [3, 3], [5, 2], [7, 5], [9, 1]])
+print("Оптимальний розподіл робіт:", result.x)
+
+    # Підрахунок максимального доходу
+x1, x2, x3 = result.x
+print(x1, x2, x3)
+total_income = (12*x1 + 6*x2 + 2*x3) * 2 + (12*x1 + 24*x2 + 18*x3) * 9 + (12*x1 + 18*x2 + 12*x3) * 6
+print("Максимальний місячний дохід:", total_income)
 
 
-# Побудова графіків
-plt.figure(figsize=(12, 5))
 
-
-# Опукла множина
-plt.subplot(1, 2, 1)
-plt.plot(convex_points[:, 0], convex_points[:, 1], 'bo-', label='Опукла множина')
-plt.fill(convex_points[:, 0], convex_points[:, 1], 'b', alpha=0.3)
-plt.title('Опукла множина')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-
-
-# Неопукла множина
-plt.subplot(1, 2, 2)
-plt.plot(non_convex_points[:, 0], non_convex_points[:, 1], 'ro-', label='Неопукла множина')
-plt.fill(non_convex_points[:, 0], non_convex_points[:, 1], 'r', alpha=0.3)
-plt.title('Неопукла множина')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-
-
-plt.tight_layout()
-plt.show()
+stop = time.time()
+print("Час виконання:", stop - start)
